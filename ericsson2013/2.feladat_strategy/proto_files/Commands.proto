@@ -1,0 +1,39 @@
+package strategy_protocol;
+
+import "Common.proto";
+message Commands {
+	message Move {
+		required string withWhat = 1;
+		required Position toPosition = 2;
+	}
+
+	message Attack {
+		required string withWhat = 1;
+		required string what = 2;
+	}
+
+	enum ActorType {
+		SOLDIER = 0;
+		WORKER = 1;
+	}
+
+	message Train {
+		required string withWhat = 1;
+		required ActorType what = 2;
+	}
+
+	enum CommandType {
+		MOVE = 1;
+		ATTACK = 2;
+		TRAIN = 3;
+	}
+
+	message Command {
+		required CommandType commandType = 1;
+		optional Move moveCommand = 2;
+		optional Attack attackCommand = 3;
+		optional Train trainCommand = 4;
+	}
+
+	repeated Command commands = 1;
+}

@@ -1,0 +1,47 @@
+2013. november 20. 09:09 (CET)
+--- UNZIP ---
+Archive:  1473_2_2.zip
+  inflating: base.cpp                
+  inflating: commander.cpp           
+  inflating: Commands.pb.cc          
+  inflating: Commands.pb.h           
+  inflating: Commands.proto          
+  inflating: Common.pb.cc            
+  inflating: Common.pb.h             
+  inflating: Common.proto            
+  inflating: goalable.cpp            
+  inflating: helper.hpp              
+  inflating: main.cpp                
+  inflating: moveable.cpp            
+  inflating: object.hpp              
+  inflating: ProtobufUtil.hh         
+  inflating: soldier.cpp             
+  inflating: worker.cpp              
+  inflating: WorldStatusUpdate.pb.cc  
+  inflating: WorldStatusUpdate.pb.h  
+  inflating: WorldStatusUpdate.proto  
+--- UNZIP ---
+
+--- G++ ---
+moveable.cpp: In member function ‘bool moveable::isFree(v, const GlobalState&, bool) const’:
+moveable.cpp:92:31: warning: suggest braces around empty body in an ‘if’ statement [-Wempty-body]
+  if(isAttack)LOG1("BOSS mode");
+                               ^
+--- G++ ---
+
+--- TESZT ---
+-- starting Game: maps/sample.map --
+-- Game over --
+Boss is dead: game ends
+Successful TC
+-- Debug (stderr), limited to 5120 KBytes --
+-- starting Game: maps/easy.map --
+-- Game over --
+Boss is dead: game ends
+Successful TC
+-- Debug (stderr), limited to 5120 KBytes --
+2/2 sikeres teszt
+--- TESZT ---
+
+Végeredmény:
+2/2 sikeres teszt

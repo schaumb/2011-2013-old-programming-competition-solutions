@@ -1,0 +1,32 @@
+﻿
+<head>
+	<title>Logo</title>
+</head>
+<body>
+	<h2>Logo</h2>
+	<p align="justify">
+		Adott a logo.txt file.
+		Feladatotok egy olyan C++ program írása, melynek kimenete megegyezik a logo.txt-ben találhatóval.
+	</p>
+	<ul>
+		<li>A program a kimenetét az stdout-ra írja</li>
+		<li>A sorokat '\n' választja el</li>
+		<li>Az utolsó sor végén is van egy '\n'</li>
+		<li>A programotok nem használhat fájlokat, vagy bármiféle más külső erőforrást</li>
+		<li>Ebben a feladatban csak egy darab forrásfájlt adhattok be</li>
+	</ul>
+	<p align="justify">
+		Helyes kimenet esetén, a pontozás programotok karaktereinek számától függ.
+		A cél minél kevesebb karaterből megoldani a feladatot.
+	</p>
+	<h4>A fordítás és tesztelés (vázlatos) menete:</h4>
+	<ol>
+		<li>Átnevezzük a beküldött fájlt main.cpp-re</li>
+		<li>g++ -std=c++11 -O2 main.cpp</li>
+		<li>diff <(./a.out) logo.txt</li>
+	</ol>
+	<p align="justify">
+		A fordítás a g++ 4.8.1-es verizójával történik.
+	</p>
+</body>
+

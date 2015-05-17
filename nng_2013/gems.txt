@@ -1,0 +1,191 @@
+﻿Sötét volt, érezte, ahogy testét  elárasztja az adrenalin. Feltett szándéka volt
+megnyerni a Törpekirály idei kincskereső bajnokságát.
+Amint kivilágosodott  a föld alatti barlangrendszer,  észrevette a mellette álló
+zombi-törpét, és  megvetéssel fordult a  másik irányba. Bár  utálta ezek a saját
+akaratuktól megfosztott lényeket, szerencsés  volt, mivel a legközelebbi kincsen
+kívül  nem érdekelte  ezeket semmi.  A két  másodperces felkészülési idő elég is
+volt, hogy  felmérje a viszonyokat:  a közeli nagy  értékű kincset a zombi-törpe
+ugyan  elviszi,  balra viszont  több  kisebb  drágakő  is hevert,  a  többiektől
+megnyugtató   távolságban.  Ezek   irányába  indult,   és  sikerült   is  mindet
+összeszednie.  Utoljára egy  kilenc arany  értékű kincset  szerzett meg,  de még
+mielőtt  tarsolyába dobta  volna,  eszébe jutott  a  Törpekirály idei  versenyre
+vonatkozó  szabálya, mely  a  törpék  nagylelkűségét hivatott  bizonyítani:  aki
+ugyanis  a megszerzett  kincset  ahelyett, hogy  eltenné,  másoknak adja,  dupla
+jutalomban  részesül. Viszont  amíg  a kincset  el  nem teszi,  helyben  kellett
+maradnia. Reménykedve nézett hát körbe. Észre is vett egy kék sapkás törpét, aki
+mintha  pont felé  tartott  volna.  Sajnos rövidesen  irányt  változtatott,  úgy
+látszik nem vette észre, hogy csak rá várt. Mögötte jött viszont egy másik, akit
+már többször látott  bányászás közben, néhányszor beszélgettek is  a föld alatti
+időjárásról. Amint odaért  hozzá, oda is adta neki  szerzeményét, így 18 aranyat
+szerzett, míg bányász  társa 9-et. A következő kincs  egy zsákutca végében volt,
+mindketten errefelé vették az irányt, de mivel egyszerre szerezték meg, erre nem
+vonatkozott az  ajándékozási jutalom.  Osztozniuk kellett  a 4  értékű  kincsen,
+ezért két-két aranyat ért csak nekik.
+Már csak néhány kincs maradt a  barlangban, a középen található 8 értékű drágakő
+volt a  legvonzóbb célpont. Félt,  hogy a többiek  is ezt célozzák  meg, ő pedig
+lemarad  róla. Végül  a kockáztatás  mellett döntött,  és erre  indult el. Ahogy
+egyre  közelebb ért,  már látta,  hogy rosszul  döntött: kétségtelenül egy egész
+tömegnyi  törpe mozdult  rá  ugyanerre a  célpontra.  "A kocka  el  van  vetve",
+gondolta, és folytatta útját. Már majdnem el is érte, de az utolsó pillanatban a
+kék sapkás törpe  beelőzte, és önelégült vigyorral az  arcán tartotta tenyerén a
+drágakövet. "Még nincs  veszve minden", gondolta, mikor látta,  hogy a törpe még
+nem tette  el a kincset.  Egyszerre értek oda  hárman is, így  csak 2.66 aranyat
+kaptak,  míg a  kék sapkás  törpe az  ajándékozási jutalommal együtt 16 arannyal
+lett  gazdagabb. Az  utolsó kincs  a barlang  egy távoli  sarkában volt,  és már
+ketten is elindultak érte. Amint valamelyik törpe megszerzi, véget ér a verseny,
+ezért a továbbajándékozásra sincs lehetőség. Teljesen értelmetlen volt elindulni
+érte, de nem szeretett tétlenül várakozni, hát szaladt a többiekkel együtt.
+
+Szerver parancsok teszteléshez:
+p: pause
+r: resume
++/-: gyorsít/lassít
+t: turbo, +/- tovább gyorsít, a képernyőfrissítés rovására
+b: bot (alias zombi-törpe)
+d: drop bot
+1-9: pályaválasztás
+
+A végső összecsapásról:
+- kb fél órás lesz
+- ugyanezeken a pályákon, random sorrendben
+- alapértelmezett sebességgel (128ms/tick)
+- 14 fix játékossal, ha szükséges, botokkal feltöltve.
+
+Kaptok egy CLIENT osztályt, ami kapcsolódik, "login"-el, összeszedi a választ, ebből lehet leszármazni, mint a példának adott MYCLIENT.
+
+A szerver tickenként küldi el az egész játékteret:
+
+ok
+tick 38
+map 35 35
+###################################
+#.......#.......#.#...#...#.....#.#
+###.#.#####.#.#.#.###.###.#.###.#.#
+#.....#...#...#.#...............#.#
+#####.#.#.#.#.#.#.#####.#.#######.#
+#...#.#.............#...#.....#...#
+#.#.#.#####.#.#####.#.#####.###.#.#
+#.#.#.#...#...#.....#...#.#...#...#
+#.###.###.#.#.#####.#####.#.#.#.###
+#.........#.#...#.....#.....#...#.#
+#####.#.#.###.#.#####.###.#.#.###.#
+#...#.#.#.....#...#.....#.#.....#.#
+###.###.###.#.#.###.#.###.###.###.#
+#.......#...#...#...#...#...#.#...#
+###.#####.###.#.#.#.#.###.#####.#.#
+#.#...#.......#.......#.#.....#...#
+#.#.#.#####.#.###.#.#.#.#.#####.#.#
+#.............#...#...........#...#
+###.#####.#.#.#####.#######.#.#.#.#
+#...#.....#...............#.#.#.#.#
+###.#####.#.#.#.###.#.#.#######.###
+#...#...#...#...........#.........#
+#.#.#.#####.#.###.#####.#.#.###.#.#
+#.#.#.........#.#.#.....#.#.#...#.#
+#########.#.#.#.#####.#.#.#.#.#.#.#
+#.#.......#...#.........#.#...#...#
+#.#####.#.#.#.#####.#.#.#.#.###.###
+#.......#.......#.......#.....#...#
+###.#.#.#.#.#.#.###.###.###.###.###
+#.#.#.#...#.#.#.#...#.#.#.#.#...#.#
+#.#.#.#.###.#.#.###.#.###.#.#.#.#.#
+#...#.#.......#...#.....#.....#...#
+###.###.#.#.#####.###.###.#.#.###.#
+#.......#.#.....#...#.....#.#...#.#
+###################################
+state 0 29 29 20
+gems 29
+1 31 5
+2 5 3
+3 25 1
+3 31 3
+4 25 2
+9 3 2
+11 8 6
+13 3 8
+13 5 7
+15 13 2
+15 23 5
+16 17 6
+17 4 7
+17 25 2
+18 15 2
+18 25 1
+19 28 2
+19 31 4
+20 11 7
+21 9 9
+22 7 3
+22 31 5
+22 33 2
+23 5 3
+23 24 4
+24 19 8
+25 1 7
+28 3 6
+31 3 1
+players 6
+1 17 31 38
+2 4 9 23
+3 29 8 17
+4 27 30 53
+5 4 9 33
+6 17 31 37
+.
+
+Magyarázat:
+
+ok/start/timeout
+Az előző parancsra adott válasz. Akkor is "ok" ha mondjuk belemész a falba, vagy rossz parancsot küldesz, elég nehéz kihozni a sodrából.
+Új pályánál vagy menet közben becsatlakozás esetén az első elküldött állapotnál "start".
+Ha a szerver nem kapott időben választ, akkor "timeout". Ezeket a CLIENT le is nyeli, hogy nehogy kétszer küldjetek "north"-ot amikor
+egyet akartok északra menni, csak épp túl lassan válaszoltatok.
+
+tick <n>
+Az állapot első sora az kör sorszámát adja meg, új pályánál 0-ról indul, egyesével nő.
+
+map <X> <Y>
+A térkép méretét adja meg, X oszlopból és Y sorból áll. 64x64-nél nem lesz nagyobb.
+ezután Y darab sor következik, mindegyik pontosan X darab karakterből áll,
+a térképet kódolja sorfolytonosan. A bejárható cellákat '.' jelöli, a falat '#'.
+A téglalap körvonalán mindig garantáltan fal van.
+A térkép celláit az (x,y) koordinátával címezzük, a bal felső sarok pozíciója (0,0),
+a jobb felsőé (X-1,0), a jobb alsóé (X-1,Y-1).
+Az irányokat a térképeken megszokott módon
+fel=észak, jobbra=kelet, le=dél, balra=nyugat módon jelöljük.
+
+state <id> <x> <y> <score>
+A játékos állapota: azonosítója (mintha nem lenne tök mindegy), (x,y) pozíciója és a lefelé kerekített összpontszáma.
+
+gems <G>
+A kincsek számát adja meg.
+A következő G darab sorban az egyes kincsek pozíciója és értéke szerepel:
+<x> <y> <value>
+
+players <P>
+Az ellenfelek száma,
+a következő P darab sorban a leírásuk következik:
+<id> <x> <y> <score>
+
+.
+Az utolsó sor egy pontból áll.
+
+Válaszként north/east/west/south/stay-t lehet küldeni,
+hogy merre menjen, vagy helyben maradjon.
+
+Ha rálépsz egy kincsre, azonnal megkapod az értékét, de amíg el nem lépsz onnan, vagy más is rá nem lép, nem tűnik el.
+Ha rajta maradsz, és más is rálép, újra megkapod a kincs értékét, és az is, aki rálépett, a kincs pedig eltűnik. Ilyenkor te összesen a kincs értékének dupláját kaptad.
+
+Ha többen léptek rá egyszerre egy kincsre, akkor szétoszlik a kincs értéke köztetek, és a kincs azonnal eltűnik.
+Ha állsz egy kincsen, és többen lépnek rá egyszerre, akkor te megkapod a teljes értéket, a többiek pedig osztoznak rajta.
+Ha elfogyott az összes kincs, vagy az utolsó kincseken mindegyiken áll valaki, akkor új pálya kezdődik.
+Minden pálya elején az első tick 2 másodpercig tart.
+
+FAQ:
+- max 1024 kincs lehet egy pályán
+- a pálya mindig összefüggő
+- kincsek nem fedhetik egymást
+- játékosok kezdőpozíciója nem lehet kincsen
+- játékosok szabadon átmehetnek egymáson
+- játékos, kincs nem eshet falra
+- a jatékosok ID-ja nem változik a pályák között

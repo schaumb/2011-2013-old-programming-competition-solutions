@@ -1,0 +1,8 @@
+
+include_rules
+
+INCLUDE_DIRS += -I../src
+
+: foreach *.cpp |> !cxx |>
+: *.o ../src/*.o |> !linker |> diamond 
+

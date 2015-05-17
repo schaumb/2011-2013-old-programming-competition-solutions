@@ -1,0 +1,47 @@
+package strategy_protocol;
+
+import "Common.proto";
+
+message WorldStatusUpdateMessage {
+	message CommonProperties {
+		optional string id = 1;
+		optional Position position = 2;
+	}
+
+	message Base {
+		optional CommonProperties common = 1;
+		optional int32 health = 2;
+		optional int32 team = 3;
+	}
+
+	message Mine {
+		optional CommonProperties common = 1;
+		optional int32 capacity = 2;
+	}
+
+	message Obstacle {
+		optional CommonProperties common = 1;
+	}
+
+	message Worker {
+		optional CommonProperties common = 1;
+		optional int32 resource = 2;
+		optional int32 health = 3;
+		optional int32 team = 4;
+	}
+
+	message Soldier {
+		optional CommonProperties common = 1;
+		optional int32 health = 2;
+		optional int32 team = 3;
+	}
+
+	repeated Base bases = 1;
+	repeated Mine mines = 2;
+	repeated Obstacle obstacles = 3;
+	repeated Worker workers = 4;
+	repeated Soldier soldiers = 5;
+	optional int32 resource = 6;
+	optional int32 myteam = 7;
+}
+

@@ -1,0 +1,22 @@
+
+export NNG_CXX
+export NNG_BOOST_DIR
+
+.gitignore
+
+CXX=${NNG_CXX}
+LD=$(CXX)
+
+CXX_FLAGS = -std=c++11 -O0 -g -Wall -Wextra -Werror -pedantic
+LD_FLAGS =
+
+BOOST_INCLUDE_DIR = ${NNG_BOOST_DIR}/include
+BOOST_LIB_DIR = ${NNG_BOOST_DIR}/lib
+
+INCLUDE_DIRS += -isystem $(BOOST_INCLUDE_DIR)
+LIBS =
+
+!cxx = |> $(CXX) $(CXX_FLAGS) $(INCLUDE_DIRS) -c %f -o %o |> %B.o 
+!cxx_and_link = |> $(CXX) $(CXX_FLAGS) $(INCLUDE_DIRS) %f -o %o |>
+!linker = |> $(LD) $(LD_FLAGS) %f $(LIBS) -o %o |>
+

@@ -1,0 +1,283 @@
+﻿
+<head>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+	<title>Strategy</title>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+	<h1>Strategy</h1>
+	<p>
+		Adott egy fordulókra osztott stratégiai játék.	Feladatotok az ellenfél bázisának lerombolása.
+	</p>
+	<h2>Játékmenet</h2>
+		<p>
+			A játék 1 az 1 ellen történik, hasonlóan a sakkhoz, valamelyik játékos előbb kezd.
+			A játék körökre osztott. Egy kör szerkezete:
+		</p>
+		<ol>
+			<li>Megkapjátok az éppen látható objektumok listáját és a rendelkezésre álló erőforrás mennyiségét</li>
+			<li>Válaszoltok parancsok listájának formájában</li>
+			<li>A szerver végrehajtja a parancsokat</li>
+			<li>Az ellenfél megkapja az éppen látható objektumok listáját és a rendelkezésre álló erőforrás mennyiségét</li>
+			<li>Válaszol parancsok listájának formájában</li>
+			<li>A szerver végrehajtja a parancsokat</li>
+		</ol>
+		<p>
+			A játék elején csak a bázisotok áll rendelkezésre, és valamennyi erőforrás.
+			A játéknak vége van, ha legyőzitek az ellenfeletek bázisát, vagy a saját bázisotokat rombolják le.
+			A játék akkor is véget ér ha nem kapunk választ a processztől 0.1 másodpercen belül, vagy ha hibásan kódolt üzenetet kapunk.
+			Ekkor a rosszul viselkedő ágens automatikusan veszít.
+	<h2>Pálya</h2>
+		<p>
+			A pálya hatszöghálós elrendezésű. Egy mezőt (x, y) egész párral azonosítjuk.
+			A használt koordináta rendszert az alábbi ábra szemlélteti:
+		</p>
+		<p>
+			<img src="hexa_coordinates.png"/>
+		</p>
+			A szürke mezőtől mért távolságokat az alábbi ábra szemlélteti:
+		</p>
+		<p>
+			<img src="hexa_distance.png"/>
+		</p>
+		<p>
+			Egy mező szomszédainak azokat a mezőket hívjuk, melyeknek a mezőtől való távolsága pontosan 1.
+		</p>
+	<h2>Egységek és objektumok</h2>
+		<h3>Katona</h3>
+		<p>
+			Támadó egység: erős és nagyot sebez.
+		</p>
+		<h3>Dolgozó</h3>
+		<p>
+			Erőforrás gyűjtő egység. Gyenge támadással is rendelkezik.<br/>
+			Erőforrás gyűjtés:<br/>
+			A dolgozónak úgy gyűjthet be erőforrást, ha rámozog egy bányára.
+			A bányára más egység is rámozoghat, de maximum egy lehet egyszerre rajta.
+			Ekkor a dolgozónál annyi erőforrás lesz amennyit elbír (kevesebb ha a bánya éppen kifogy), és ez az érték a bánya kapacitásából levonódik.
+			Ahhoz, hogy a begyűjtött erőforrás felhasználható legyen, vissza kell vinnie a bázishoz.
+			Amikor egy dolgozó a bázis egy szomszédos mezőjére lép, akkor a dolgozó leadja a begyűjtött erőforrást.
+		</p>
+		<h3>Bázis</h3>
+		<p>
+			A dolgozók ide hozzák be a begyűjtött erőforrást, illetve a bázis képezhet ki új egységeket.
+			A játék elején egy bázissal indultok. Ezt kell megvédeni ellenfeletektől, illetve az övékel lerombolni a győzelemhez.
+		</p>
+		<h3>Bánya</h3>
+		<p>
+			A dolgozók a bányából gyűjthetnek erőforrást.
+		</p>
+		<h3>Akadály</h3>
+		<p>
+			Ezek az objektumok nem mozognak.
+		</p>
+		<h3>Az egységek és tulajdonságaik:</h3>
+		<table>
+			<tr>
+				<th class="units units_first_col"/>
+				<th class="units">Katona<br/>(Soldier)</th>
+				<th class="units">Dolgozó<br/>(Worker)</th>
+				<th class="units">Bázis<br/>(Base)</th>
+				<th class="units">Bánya<br/>(Mine)</th>
+				<th class="units">Akadály<br/>(Obstacle)</th>
+			</tr>
+			<tr>
+				<td class="units_first_col">Id</td>
+				<td class="units units_blue">&#x2713;</td>
+				<td class="units units_blue">&#x2713;</td>
+				<td class="units units_blue">&#x2713;</td>
+				<td class="units units_blue">&#x2713;</td>
+				<td class="units units_blue">&#x2713;</td>
+			</tr>
+			<tr>
+				<td class="units_first_col">Pozició</td>
+				<td class="units units_blue">&#x2713;</td>
+				<td class="units units_blue">&#x2713;</td>
+				<td class="units units_blue">&#x2713;</td>
+				<td class="units units_blue">&#x2713;</td>
+				<td class="units units_blue">&#x2713;</td>
+			</tr>
+			<tr>
+				<td class="units_first_col">Életerő</td>
+				<td class="units units_blue">0..20</td>
+				<td class="units units_blue">0..9</td>
+				<td class="units units_blue">0..300</td>
+				<td class="units"></td>
+				<td class="units"></td>
+			</tr>
+			<tr>
+				<td class="units_first_col">Támadási távolság</td>
+				<td class="units">3</td>
+				<td class="units">2</td>
+				<td class="units"></td>
+				<td class="units"></td>
+				<td class="units"></td>
+			</tr>
+			<tr>
+				<td class="units_first_col">Látótávolság</td>
+				<td class="units">5</td>
+				<td class="units">5</td>
+				<td class="units">6</td>
+				<td class="units"></td>
+				<td class="units"></td>
+			</tr>
+			<tr>
+				<td class="units_first_col">Sebzés</td>
+				<td class="units">4</td>
+				<td class="units">2</td>
+				<td class="units"></td>
+				<td class="units"></td>
+				<td class="units"></td>
+			</tr>
+			<tr>
+				<td class="units_first_col">Erőforrás</td>
+				<td class="units"></td>
+				<td class="units units_blue">0..10</td>
+				<td class="units"></td>
+				<td class="units"></td>
+				<td class="units"></td>
+			</tr>
+			<tr>
+				<td class="units_first_col">Költség</td>
+				<td class="units">50</td>
+				<td class="units">20</td>
+				<td class="units"></td>
+				<td class="units"></td>
+				<td class="units"></td>
+			</tr>
+			<tr>
+				<td class="units_first_col">Kapacitás</td>
+				<td class="units"></td>
+				<td class="units"></td>
+				<td class="units"></td>
+				<td class="units units_blue">0..10000</td>
+				<td class="units"></td>
+			</tr>
+			<tr>
+				<td class="units_first_col">Csapat</td>
+				<td class="units units_blue">&#x2713;</td>
+				<td class="units units_blue">&#x2713;</td>
+				<td class="units units_blue">&#x2713;</td>
+				<td class="units"></td>
+				<td class="units"></td>
+			</tr>
+		</table>
+		<p>
+			A halvány kékkel kiemelt tulajdonságokat az ágensetek minden körben megkap. (lásd: kommunikáció)
+		</p>
+		<h3>Id</h3>
+		<p>
+			Minden objektumot egyedien azonositó konstans string. A kommunikáció során ez az id használható egyes egységekre való hivatkozás során.
+		</p>
+		<h3>Pozició</h3>
+		<p>
+			Az objektumok poziciója. Értéke egy egész számpár (x, y).
+		</p>
+		<h3>Életerő</h3>
+		<p>
+			Az egységek életereje. Amikor ez 0-ra csökken az egység meghal és azonnal kikerül a játékból.
+		</p>
+		<h3>Támadási távolság</h3>
+		<p>
+			Megadja, hogy egy adott egység maximum mekkora távolságra tud támadni.
+		</p>
+		<h3>Látótávolság</h3>
+		<p>
+			Programotok nem minden játékban levő objektumról kap információt. Csak olyanokról, melyek valamely egységetekhez legfeljebb az adott egységre jellemző látótávolság távolságra van.
+		</p>
+		<h3>Sebzés</h3>
+		<p>
+			Egy támadás hány életerőt von le a támadott egység életerejéből.
+		</p>
+		<h3>Erőforrás</h3>
+		<p>
+			Megadja mennyi erőforrás van a dolgozónál.
+		</p>
+		<h3>Költség</h3>
+		<p>
+			Megadja mennyi erőforrásba kerül az adott egység kiképzése.
+		</p>
+		<h3>Kapacitás</h3>
+		<p>
+			Megadja mennyi erőforrás van még a bányában. Ha egy bánya kiürül, nem tűnik el. A bányák kapacitása a játék elején különböző lehet.
+		</p>
+		<h3>Csapat</h3>
+		<p>
+			Megadja az adott objektum melyik csapathoz tartozik. Azokat az egységeket irányíthatjátok, amelyeknek
+			Csapat száma megegyezik a myteam változóval. A myteam változó egy-egy szimulációban nem változik.
+		</p>
+	<h2>Parancsok</h2>
+		<p>
+			Három féle parancs adható ki minden körben.
+		   	Egy körben több parancs is kiadható. Egy katona vagy dolgozó egy körben maximum egy parancsot tud végrehajtani.
+			A parancsok sorban hajtódnak végre.
+			Amennyiben egy parancs nem tejlesíthető (szabálytalan, nem létező egység, stb), akkor annak nincs hatása a játékra.
+		</p>
+		<h3>Mozgás (Move)</h3>
+		<p>
+			Két paramétere van: mivel (withWhat):id és hova (toPosition):Position.
+			A mozgás mindig csak egy szomszédos mezőre történhet.
+			A bányán kívül nem lehet egyik objektumra sem rámozogni (lásd még a dolgozó leírását).
+			Egy körben mozogni és támadni nem lehet egyszerre ugyanazzal az egységgel.
+		</p>
+		<h3>Támadás (Attack)</h3>
+		<p>
+			Két paramétere van: mivel (withWhat):id és mit (what):id.
+			A támadás sikerességéhez a támadott objektumnak a támadási távolságon belül kell lennie.
+			Egy körben támadni és mozogni nem lehet egyszerre ugyanazzal az egységgel.
+		</p>
+		<h3>Kiképzés (Train)</h3>
+		<p>
+			Két paramétere van: mivel (withWhat):id és mit (what):{SOLDIER, WORKER}.
+			Kiképzés parancs sikerességekor az adott egység költsége levonódik a rendelkezésre álló erőforrásból.
+			Egy bázis egy körben maximum egy egységet tud kiképezni, és csak akkor, ha a bázison nem áll senki.
+			A bázis mezőjéről való lemozgás után már nem lehet visszamenni.
+			A kiképzett egységekkel leghamarabb a következő körben lehet mozogni.
+		</p>
+	<h2>Kommunikáció</h2>
+		<p>
+			A játékot irányító programotok és játék motorja közötti kommunikációra a Protocol Buffers használatos. Erről bővebben
+			<a href="http://code.google.com/p/protobuf" >itt</a> olvashattok. A kommunikációt leíró proto fájlokat a verseny weboldaláról tölthetitek
+			le, egy nagyon buta példaprogrammal együtt. A kapott üzeneteket a programotok standard inputján kapjátok, a küldött üzeneteket pedig a
+			standard outputra kell küldenetek.
+		</p>
+		<p>
+			Minden kör elején kaptok egy WorldStatusUpdate üzenetet. Ez tartalmazza az általatok látott egységeket és objektumokat (beleértve a
+			saját egységeiteket is), valamint hogy mennyi erőforrással rendelkeztek és a saját a csapatotok számát (myteam).
+		   	Az egységek és objektumok mezői tartalmazzák a korábbi
+			táblázatban kékkel jelölt információkat is. Miután ezt megkaptátok, egy Commands üzenetet kell küldjetek, amibe beleteszitek a kiadni
+			kívánt parancsokat. Minden parancsot egy Command típusú üzenetbe kell csomagolni, amiben megadjátok a parancs típusát (MOVE, ATTACK vagy
+			TRAIN), és kitöltitek a megfelelő típusú parancsot (moveCommand, attackCommand vagy trainCommand). A parancsok paramétereinek
+			jelentése a Parancsok fejezetben van leírva. Ezen üzenet elküldését követően a megadott parancsok végrehajtódnak (ha végrehajthatóak),
+			és folytatódik a kör.
+		</p>
+	<h2>Fordítás</h2>
+		<p>
+			A fordítás során a kapott forrás fájlok mellé be fogjuk másolni a proto fájlokat és a ProtobufUtil.hh-t. Ezután a következő parancsokat adjuk ki:
+		</p>
+			<ol>
+				<li>protoc --cpp_out=. *.proto</li>
+				<li>g++ -std=c++11 –pedantic -Wall -Wextra –static –O2 -isystem $(protoc_dir)/include
+					–isystem $(boost_dir)/include -L $(protoc_dir)/lib *.cc *.cpp –lprotobuf -lpthread –o strategy</li>
+			</ol>
+		<p>
+			Tehát használhatjátok a Boost library-k header-only részét is.
+			Az általunk használt protoc verziója: 2.5.0, a g++ verziója 4.8.1, a boost verziója 1.54.0.
+		</p>
+	<h2>Tesztelés</h2>
+		<p>
+			A verseny ideje alatt a 2. fordulóhoz hasonlóan, folyamatosan tudtok szerverünkön tesztelni a weboldal felületén keresztül.
+			Ebben a tesztben egy pályán fogjuk futtatni az ágenseteket. Az ágensetek saját maga ellen fog játszani
+			(tehát két példányban fut), így ki tudtok próbáni többféle taktikát is. A tesztelés során a myteam változó értéke 1 vagy 2.
+
+			A pontozás során körmérkőzést fognak játszani az ágenseitek, tehát minden ágens fog minden ágens ellen játszani kétszer
+			(térfél cserével). A végső sorrend a megnyert játékok száma alapján dől el.
+			A pontozásnál használt pálya nagyon hasonló, de nem megyegyező a folyamatos tesztelésnél használt pályához.
+			A pontozás során a myteam változó értéke nem 1 és nem 2.
+		</p>
+		<p>
+			A folyamatos tesztelés során az stderr-re (std::cerr) van lehetőségetek logolni, ágens példányonként maximum 5MB-ot.
+		   	A teszteredményhez tartozó logokat letölthetitek a weboldalról.
+		</p>
+</body>
+

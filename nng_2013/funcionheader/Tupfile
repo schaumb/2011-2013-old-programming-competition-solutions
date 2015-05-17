@@ -1,0 +1,6 @@
+
+include_rules
+
+: code.cpp |> !cxx_and_link |> code
+: code |> test `./code` -eq '55' > %o |> result
+

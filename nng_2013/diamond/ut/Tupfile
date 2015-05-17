@@ -1,0 +1,9 @@
+
+include_rules
+
+INCLUDE_DIRS += -I../src
+LIBS += $(BOOST_LIB_DIR)/libboost_unit_test_framework.a
+
+: foreach *.cpp |> !cxx |>
+: *.o ../src/*.o |> !linker |> unitTest
+

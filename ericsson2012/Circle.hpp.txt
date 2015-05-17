@@ -1,0 +1,44 @@
+
+<!-- saved from url=(0062)http://matthiasvegh.dyndns.org/svn/1/trunk/Ericsson/Circle.hpp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2"></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">#ifndef CIRCLE_HPP
+#define CIRCLE_HPP
+#include &lt;string&gt;
+#include &lt;sstream&gt;
+#include &lt;boost\math\constants\constants.hpp&gt;
+#include &lt;boost/geometry.hpp&gt;
+#include &lt;boost/geometry/geometries/polygon.hpp&gt;
+namespace er{
+typedef boost::geometry::model::polygon
+	&lt;
+		boost::geometry::model::point&lt;double, 2, boost::geometry::cs::cartesian&gt; 
+	&gt; Polygon;
+template&lt;unsigned int n=256&gt;
+class Circle {
+	const double twopibyn;
+public:
+	double x, y;
+	unsigned r;
+	Circle(double x, double y, unsigned r) : x(x), y(y), r(r), twopibyn(boost::math::constants::pi&lt;double&gt;()*2/n) { };
+	std::string wkt() const {
+		
+		std::stringstream ss;
+		ss&lt;&lt;std::fixed;
+		ss&lt;&lt;"POLYGON((";
+		ss&lt;&lt;x+r&lt;&lt;" "&lt;&lt;y;
+		for(std::size_t i=1; i&lt;n-1; ++i){
+			ss	&lt;&lt;", "&lt;&lt; r* std::cos(twopibyn*i) + x 
+				&lt;&lt;" " &lt;&lt; r*	std::sin(twopibyn*i) + y;
+		}
+		ss&lt;&lt;"))";
+		return ss.str();
+	}
+	operator Polygon() const {
+		Polygon tmp;
+		boost::geometry::read_wkt(wkt(), tmp);
+		return tmp;
+	}
+		
+
+};
+}; // namespace er
+#endif // CIRCLE_HPP</pre></body></html>

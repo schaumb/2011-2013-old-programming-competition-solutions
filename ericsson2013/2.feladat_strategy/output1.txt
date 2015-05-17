@@ -1,0 +1,15 @@
+2013. november 20. 06:38 (CET)
+--- UNZIP ---
+Archive:  1473_2_1.zip
+  inflating: 201_FINAL.cpp           
+--- UNZIP ---
+
+--- G++ ---
+--- G++ ---
+
+--- TESZT ---
+sikeres teszt
+--- TESZT ---
+
+Végeredmény:
+sikeres teszt
